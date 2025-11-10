@@ -1,24 +1,35 @@
-import React from 'react';
-import { Code2, Rocket, Users } from 'lucide-react';
+import React, { useState } from "react";
+import { Code2, Rocket, Users } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+type Highlight = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
 
 export default function About(): JSX.Element {
-  const highlights = [
+  const highlights: Highlight[] = [
     {
       icon: Code2,
-      title: 'Clean Code',
-      description: 'Writing maintainable, scalable, and efficient code is my priority',
+      title: "Clean Code",
+      description: "Writing maintainable, scalable, and efficient code is my priority",
     },
     {
       icon: Rocket,
-      title: 'Fast Performance',
-      description: 'Optimizing applications for speed and smooth user experiences',
+      title: "Fast Performance",
+      description: "Optimizing applications for speed and smooth user experiences",
     },
     {
       icon: Users,
-      title: 'Collaborative',
-      description: 'Strong communicator who thrives in team environments',
+      title: "Collaborative",
+      description: "Strong communicator who thrives in team environments",
     },
   ];
+
+  // optional: local fallback in case the image fails to load
+  const [imgError, setImgError] = useState(false);
+  const profileSrc = "../public/images/1.jpg"; // must be exactly public/images/1.jpg (lowercase)
 
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
@@ -33,24 +44,24 @@ export default function About(): JSX.Element {
           {/* Left: Text */}
           <div className="space-y-6">
             <p className="text-gray-300 text-lg leading-relaxed">
-              Hi, I'm <span className="text-cyan-400 font-semibold">Kavin Kishore R</span>, 
-              a passionate Full Stack Developer with a background in Electronics and Communication Engineering.
-              My journey into software development began with a curiosity about how technology and AI 
-              can solve real-world problems. Over time, that curiosity turned into hands-on experience — 
-              building everything from AI-powered object detection systems to dynamic web and mobile applications.
+              Hi, I'm <span className="text-cyan-400 font-semibold">Kavin Kishore R</span>, a passionate Full Stack
+              Developer with a background in Electronics and Communication Engineering. My journey into software
+              development began with a curiosity about how technology and AI can solve real-world problems. Over
+              time, that curiosity turned into hands-on experience — building everything from AI-powered object
+              detection systems to dynamic web and mobile applications.
             </p>
 
             <p className="text-gray-300 text-lg leading-relaxed">
-              I enjoy working across both frontend and backend technologies — crafting responsive interfaces with 
-              HTML, CSS, and JavaScript, and developing powerful backend logic using Java, Python, and MySQL. 
-              I’ve also explored AI integration through projects involving YOLOv3, TensorFlow Lite, and OpenCV, 
-              where I optimized real-time performance on edge devices.
+              I enjoy working across both frontend and backend technologies — crafting responsive interfaces with
+              HTML, CSS, and JavaScript, and developing powerful backend logic using Java, Python, and MySQL. I’ve
+              also explored AI integration through projects involving YOLOv3, TensorFlow Lite, and OpenCV, where I
+              optimized real-time performance on edge devices.
             </p>
 
             <p className="text-gray-300 text-lg leading-relaxed">
-              Beyond coding, I love designing clean, user-friendly interfaces and ensuring every application runs 
-              smoothly from concept to deployment. My goal is to keep learning, growing, and contributing to 
-              impactful tech solutions that bridge innovation with usability.
+              Beyond coding, I love designing clean, user-friendly interfaces and ensuring every application runs
+              smoothly from concept to deployment. My goal is to keep learning, growing, and contributing to impactful
+              tech solutions that bridge innovation with usability.
             </p>
           </div>
 
@@ -60,13 +71,23 @@ export default function About(): JSX.Element {
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-500 opacity-20 blur-2xl pointer-events-none" />
 
             <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border-2 border-cyan-400/30 shadow-lg bg-slate-800/50">
-              {/* image served from public/ */}
-              <img
-                src="/images/1.jpg"
-                alt="Kavin Kishore"
-                className="w-full h-full object-cover rounded-2xl transition-transform duration-500 ease-out hover:scale-105"
-                loading="lazy"
-              />
+              {/* image served from public/ — use root path */}
+              {!imgError ? (
+                <img
+                  src={profileSrc}
+                  alt="Kavin Kishore"
+                  className="w-full h-full object-cover rounded-2xl transition-transform duration-500 ease-out hover:scale-105"
+                  loading="lazy"
+                  onError={() => setImgError(true)}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-800 text-gray-300">
+                  <span className="text-center px-4">
+                    <div className="text-xl font-semibold">Kavin Kishore</div>
+                    <div className="text-sm mt-1 text-gray-400">Profile image not available</div>
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>
