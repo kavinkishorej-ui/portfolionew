@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Code2, Rocket, Users } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 type Highlight = {
-  icon: LucideIcon;
+  icon: React.ComponentType<any>;
   title: string;
   description: string;
 };
@@ -27,9 +26,11 @@ export default function About(): JSX.Element {
     },
   ];
 
-  // optional: local fallback in case the image fails to load
   const [imgError, setImgError] = useState(false);
-  const profileSrc = "../public/images/1.jpg"; // must be exactly public/images/1.jpg (lowercase)
+
+  // Raw GitHub file URL (direct file)
+  const profileSrc =
+    "https://raw.githubusercontent.com/kavinkishorej-ui/portfolionew/cf3df0a88b792a1e8c9b6675fa98aea319334805/public/images/1.JPG";
 
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
@@ -71,21 +72,19 @@ export default function About(): JSX.Element {
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-500 opacity-20 blur-2xl pointer-events-none" />
 
             <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border-2 border-cyan-400/30 shadow-lg bg-slate-800/50">
-              {/* image served from public/ — use root path */}
               {!imgError ? (
                 <img
                   src={profileSrc}
                   alt="Kavin Kishore"
                   className="w-full h-full object-cover rounded-2xl transition-transform duration-500 ease-out hover:scale-105"
                   loading="lazy"
+                  decoding="async"
                   onError={() => setImgError(true)}
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-800 text-gray-300">
-                  <span className="text-center px-4">
-                    <div className="text-xl font-semibold">Kavin Kishore</div>
-                    <div className="text-sm mt-1 text-gray-400">Profile image not available</div>
-                  </span>
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-700 to-slate-800 text-gray-300 p-4">
+                  <div className="text-2xl font-semibold">Kavin Kishore</div>
+                  <div className="text-sm mt-2 text-gray-400 text-center">Profile image not available</div>
                 </div>
               )}
             </div>
