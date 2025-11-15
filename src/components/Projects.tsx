@@ -23,14 +23,14 @@ export default function Projects() {
       live: 'https://kavinkishore6236.github.io/kavin-project3/',
     },
     {
-      title: 'Portfolio Website',
+      title: 'TASK MANAGEMENT SYSTEM',
       description:
-        'Designed and deployed a personal portfolio website showcasing my projects, including AI-based applications, web designs, and Java programs. The site is built with clean design principles and responsive layouts.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'GitHub Pages'],
+        'Designed and deployed a java based task event handler it runs in console.',
+      tech: ['Java', 'GitHub Pages'],
       image:
         'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: 'https://github.com/kavinkishore6236/portfolio-new',
-      live: 'https://kavinkishore6236.github.io/portfolio-new/',
+      github: 'https://github.com/Kavinkishore6236/task',
+      
     },
     {
       title: 'Student Grade Management System (Java)',
@@ -39,7 +39,7 @@ export default function Projects() {
       tech: ['Java', 'OOP', 'ArrayList', 'Eclipse'],
       image:
         'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=800',
-      github: 'https://github.com/kavinkishore6236', // update if repo available
+      github: 'https://github.com/Kavinkishore6236/gms', // update if repo available
       
     },
   ];
